@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Profile</title>
+</head>
+<body>
+    <h1>User Profile</h1>
+    {% if user %}
+        <p><strong>Username:</strong> {{ user['username'] }}</p>
+        <p><strong>First Name:</strong> {{ user['firstname'] }}</p>
+        <p><strong>Last Name:</strong> {{ user['lastname'] }}</p>
+        <p><strong>Email:</strong> {{ user['email'] }}</p>
+        <p><strong>Address:</strong> {{ user['address'] }}</p>
+        {% if user['file_name'] %}
+            <p><strong>Uploaded File:</strong> {{ user['file_name'] }}</p>
+            <p><strong>Word Count:</strong> {{ user['word_count'] }}</p>
+            <p>
+                <a href="{{ url_for('download_file', filename=user['file_name']) }}">Download File</a>
+            </p>
+        {% endif %}
+    {% else %}
+        <p>User not found.</p>
+    {% endif %}
+    <br>
+    <a href="/">Register Another User</a> | <a href="/login">Re-Login</a>
+</body>
+</html>
